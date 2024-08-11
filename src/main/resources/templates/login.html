@@ -1,29 +1,60 @@
-
 <!DOCTYPE html>
-<html lang="en" xmlns="http://www.thymeleaf.org">
-  <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <meta name="description" content="">
-    <meta name="author" content="">
-    <title>Please sign in</title>
-    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-/Y6pD6FV/Vv2HJnA6t+vslU6fwYXjCFtcEpHbNJ0lyAFsXTsjBbfaDjzALeQsN6M" crossorigin="anonymous">
-    <link href="https://getbootstrap.com/docs/4.0/examples/signin/signin.css" rel="stylesheet" integrity="sha384-oOE/3m0LUMPub4kaC09mrdEhIc+e3exm4xOGxAmuFXhBNF4hcg/6MiAXAf5p0P56" crossorigin="anonymous"/>
-  </head>
-  <body>
-     <div class="container">
-      <form class="form-signin" th:object="${login}" method="post" th:action="@{/login}">
-        <h2 class="form-signin-heading">Please sign in</h2>
-<div class="alert alert-danger" role="alert">Bad credentials</div>        <p>
-          <label for="username" class="sr-only">Username</label>
-          <input type="text" th:field="*{email}" name="email" class="form-control" placeholder="email" required autofocus>
-        </p>
-        <p>
-          <label for="password" class="sr-only">Password</label>
-          <input type="password" th:field="*{password}" name="password" class="form-control" placeholder="Password" required>
-        </p>
-<!-- <input name="_csrf" type="hidden" value="UolfLBLmgHvFEVpuaK-Qwr7_qCL04gTGyOmQs3R4bcGrOMYXZbBuHiWAsEPoIGkPC4KkptrKhUDF0TPr-NHzgBEdWKTKC6ck" /> -->
-        <button class="btn btn-lg btn-primary btn-block" type="submit">Sign in</button>
-      </form>
+<html xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      xmlns:th="http://www.thymeleaf.org"
+      layout:decorate="~{fragments/layout}">
+<head>
+    <title>Login</title>
+</head>
+<body>
+<div layout:fragment="content" th:remove="tag">
+
+    <div class="row">
+        <div class="col-md-6 col-md-offset-3">
+            <h1>Login page</h1>
+            <form th:action="@{/login}" method="post">
+                <div th:if="${param.error}">
+                    <div class="alert alert-danger">
+                        Invalid username or password.
+                    </div>
+                </div>
+                <div th:if="${param.logout}">
+                    <div class="alert alert-info">
+                        You have been logged out.
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="username">Username</label>:
+                    <input type="text"
+                           id="username"
+                           name="username"
+                           class="form-control"
+                           autofocus="autofocus"
+                           placeholder="Username">
+                </div>
+                <div class="form-group">
+                    <label for="password">Password</label>:
+                    <input type="password"
+                           id="password"
+                           name="password"
+                           class="form-control"
+                           placeholder="Password">
+                </div>
+                <div class="form-group">
+                    <div class="row">
+                        <div class="col-sm-6 col-sm-offset-3">
+                            <input type="submit"
+                                   name="login-submit"
+                                   id="login-submit"
+                                   class="form-control btn btn-info"
+                                   value="Log In">
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <p><a href="/" th:href="@{/}">Back to home page</a></p>
+
 </div>
-</body></html>
+</body>
