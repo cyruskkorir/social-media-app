@@ -1,7 +1,6 @@
 package com.cyrus.chat;
 
 import java.util.List;
-import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
@@ -39,21 +38,6 @@ public class ChatController {
     public String showLoginPage(){
         return "login";
     }
-    
-    // @PostMapping("/login")
-    // public String postMethodName(Login login) {
-    //     Long id = login.getId();
-    //     Optional<User> user = userRepository.findById(id);
-    //     if (user.isPresent()) {
-    //         User user2 = user.get();
-    //         if(passwordEncoder.matches(login.getPassword(), user2.getPassword()) && user2.getEmail().equals(login.getEmail())){
-    //             return "/posts";
-    //         }
-    //     }
-        
-    //     return "redirect:/login";
-    // }
-    
 
     @GetMapping("/posts")
     public String getAllPosts(Model model) {
